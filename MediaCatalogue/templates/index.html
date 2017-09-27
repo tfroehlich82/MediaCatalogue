@@ -7,4 +7,13 @@
 
 {% block main %}
 
+    <h3>Images:</h3>
+    <ul>
+    {% for image in media.images %}
+        <li>
+            <img src='/media/{{ image|safe }}' width="100px" />
+        </li>
+    {% endfor %}
+    </ul>
+
 {% endblock %}
