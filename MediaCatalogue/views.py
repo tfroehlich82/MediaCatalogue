@@ -4,17 +4,20 @@ from django_propeller.views import NavBarMixin
 import os
 
 from .navbars import MainNavBar
-from .media_settings import PATH, IMAGE_EXT
+from .media_settings import PATH, IMAGE_EXT, VIDEO_EXT
 
 
 def get_media():
     all_files = os.listdir(PATH)
     images = []
+    videos = []
     for itm in all_files:
         ext = os.path.splitext(itm)
         if ext[-1].lower() in IMAGE_EXT:
             images.append(itm)
-    return {'images': images, 'path': PATH}
+        elif ext[-1].lower() in VIDEO_EXT:
+            videos.append(itm)
+    return {'images': images, 'videos': videos}
 
 
 class MainNavView(TemplateView, NavBarMixin):

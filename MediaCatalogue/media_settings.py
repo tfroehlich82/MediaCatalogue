@@ -10,3 +10,4 @@ from django.conf import settings
 
 PATH = settings.MEDIA_ROOT
 IMAGE_EXT = ['.png', '.jpg', '.jpeg', '.gif']
+VIDEO_EXT = ['.mp4', '.wmv']

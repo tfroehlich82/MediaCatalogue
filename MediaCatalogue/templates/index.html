@@ -11,7 +11,17 @@
     <ul>
     {% for image in media.images %}
         <li>
-            <img src='/media/{{ image|safe }}' width="100px" />
+{#            <img src='/media/{{ image|safe }}' width="100px" />#}
+            <a href="/media/{{ image }}">{{ image }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+
+    <h3>Videos:</h3>
+    <ul>
+    {% for video in media.videos %}
+        <li>
+            <a href="/media/{{ video }}">{{ video }}</a>
         </li>
     {% endfor %}
     </ul>
