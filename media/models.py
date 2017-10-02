@@ -1,6 +1,11 @@
 from django.db import models
-from tagulous.models import TagField
+from tagulous.models import TagField, TagModel
 import os
+
+
+class MediaTagModel(TagModel):
+    class TagMeta:
+        pass
 
 
 class MediaFile(models.Model):
@@ -25,9 +30,12 @@ class MediaFile(models.Model):
     def __unicode__(self):
         return os.path.split(self.full_path)[-1]
 
+    def __str__(self):
+        return self.__unicode__()
+
 
 class Image(MediaFile):
-    tags = TagField()
+    tags = TagField(to=MediaTagModel)
 
     def __init__(self, *args, **kwargs):
         super(Image, self).__init__(*args, **kwargs)
