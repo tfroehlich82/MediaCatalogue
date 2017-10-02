@@ -47,3 +47,5 @@ fabric.properties
 .idea/
 
 static/
+
+db.sqlite3
