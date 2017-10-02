@@ -16,10 +16,10 @@
         <thead>
             <tr>
                 <td>Filename</td>
-                <td>File Type</td>
+                <td>Type</td>
                 <td>Path</td>
-                <td>Tags</td>
                 <td>Rating</td>
+                <td>Tags</td>
             </tr>
         </thead>
         <tbody>
@@ -30,8 +30,8 @@
                 <td><a href="/media/{{ image }}">{{ image.shortname }}</a></td>
                 <td>{{ image.filetype }}</td>
                 <td>{{ image.path }}</td>
-                <td>{{ image.tags }}</td>
                 <td>{% ratings image %}</td>
+                <td>{{ image.tags }}</td>
             </tr>
         {% endfor %}
         </tbody>
