@@ -13,6 +13,7 @@
             <tr>
                 <td>Filename</td>
                 <td>File Type</td>
+                <td>Path</td>
                 <td>Tags</td>
             </tr>
         </thead>
@@ -21,8 +22,9 @@
             <tr>
     {#            <img src='/media/{{ image|safe }}' width="100px" />#}
 {#                <a href="/media/{{ image }}">{{ image }}</a>#}
-                <td>{{ image.shortname }}</td>
+                <td><a href="/media/{{ image }}">{{ image.shortname }}</a></td>
                 <td>{{ image.filetype }}</td>
+                <td>{{ image.path }}</td>
                 <td>{{ image.tags }}</td>
             </tr>
         {% endfor %}

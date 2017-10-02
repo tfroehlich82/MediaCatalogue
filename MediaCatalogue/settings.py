@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_propeller',
     'media',
-    'taggit',
+    'tagulous',
 ]
 
 MIDDLEWARE = [
@@ -123,5 +123,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_ROOT = "/var/local/DjangoMedia/"
+MEDIA_ROOT = "D:\\DjangoMedia\\"
+# MEDIA_ROOT = "/var/local/DjangoMedia/"
 MEDIA_URL = "/media/"
+
+SERIALIZATION_MODULES = {
+    'xml':    'tagulous.serializers.xml_serializer',
+    'json':   'tagulous.serializers.json',
+    'python': 'tagulous.serializers.python',
+    'yaml':   'tagulous.serializers.pyyaml',
+}

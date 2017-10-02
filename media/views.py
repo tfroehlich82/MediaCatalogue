@@ -1,4 +1,5 @@
 from django.views.generic.base import TemplateView
+from django.core.exceptions import ObjectDoesNotExist
 from django_propeller.views import NavBarMixin
 
 import os
@@ -10,14 +11,20 @@ from .models import Image
 
 def get_media():
     all_files = os.listdir(PATH)
-    images = []
     videos = []
     for itm in all_files:
         ext = os.path.splitext(itm)
         if ext[-1].lower() in IMAGE_EXT:
-            images.append(Image(itm))
+            full_path = os.path.join(PATH, itm)
+            try:
+                Image.objects.get(full_path=full_path)
+            except ObjectDoesNotExist:
+                img = Image()
+                img.full_path = full_path
+                img.save()
         elif ext[-1].lower() in VIDEO_EXT:
             videos.append(itm)
+    images = Image.objects.all()
     return {'images': images, 'videos': videos}
 
 
