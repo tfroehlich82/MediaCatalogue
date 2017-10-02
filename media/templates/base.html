@@ -2,6 +2,11 @@
 
 {% load propeller %}
 
+{% block propeller_extra_head %}
+    {% block extra_head %}
+    {% endblock %}
+{% endblock %}
+
 {% block propeller_content %}
 
     {% propeller_navbar navbar %}

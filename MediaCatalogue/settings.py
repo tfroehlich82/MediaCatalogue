@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_propeller',
     'media',
     'tagulous',
+    'star_ratings',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,5 @@ SERIALIZATION_MODULES = {
     'python': 'tagulous.serializers.python',
     'yaml':   'tagulous.serializers.pyyaml',
 }
+
+STAR_RATINGS_STAR_HEIGHT = 16

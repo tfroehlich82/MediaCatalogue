@@ -1,9 +1,13 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load staticfiles ratings %}
 
 {% block meta_title %}MediaCatalogue{% endblock %}
 {% block title %}MediaCatalogue{% endblock %}
 
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+{% endblock %}
 
 {% block main %}
 
@@ -15,6 +19,7 @@
                 <td>File Type</td>
                 <td>Path</td>
                 <td>Tags</td>
+                <td>Rating</td>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +31,7 @@
                 <td>{{ image.filetype }}</td>
                 <td>{{ image.path }}</td>
                 <td>{{ image.tags }}</td>
+                <td>{% ratings image %}</td>
             </tr>
         {% endfor %}
         </tbody>

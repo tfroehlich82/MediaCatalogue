@@ -22,5 +22,6 @@ from media.views import IndexPage
 
 urlpatterns = [
     url(r'^$', IndexPage.as_view(), name='index'),
+    url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
     url(r'^admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
