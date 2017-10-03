@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
-from media.views import IndexPage
+from media.views import IndexPage, ImagePage, VideoPage
 
 urlpatterns = [
     url(r'^$', IndexPage.as_view(), name='index'),
+    url(r'^images/$', ImagePage.as_view(), name='images'),
+    url(r'^videos/$', VideoPage.as_view(), name='videos'),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
     url(r'^admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -6,12 +6,11 @@ import os
 
 from .navbars import MainNavBar
 from .media_settings import PATH, IMAGE_EXT, VIDEO_EXT
-from .models import Image
+from .models import Image, Video
 
 
 def get_media():
     all_files = os.listdir(PATH)
-    videos = []
     for itm in all_files:
         ext = os.path.splitext(itm)
         if ext[-1].lower() in IMAGE_EXT:
@@ -23,8 +22,15 @@ def get_media():
                 img.full_path = full_path
                 img.save()
         elif ext[-1].lower() in VIDEO_EXT:
-            videos.append(itm)
+            full_path = os.path.join(PATH, itm)
+            try:
+                Video.objects.get(full_path=full_path)
+            except ObjectDoesNotExist:
+                vid = Video()
+                vid.full_path = full_path
+                vid.save()
     images = Image.objects.all()
+    videos = Video.objects.all()
     return {'images': images, 'videos': videos}
 
 
@@ -40,3 +46,11 @@ class MainNavView(TemplateView, NavBarMixin):
 
 class IndexPage(MainNavView):
     template_name = 'index.html'
+
+
+class ImagePage(MainNavView):
+    template_name = 'images.html'
+
+
+class VideoPage(MainNavView):
+    template_name = 'videos.html'

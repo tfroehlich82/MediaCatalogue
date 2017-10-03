@@ -37,5 +37,6 @@ class MediaFile(models.Model):
 class Image(MediaFile):
     tags = TagField(to=MediaTagModel)
 
-    def __init__(self, *args, **kwargs):
-        super(Image, self).__init__(*args, **kwargs)
+
+class Video(MediaFile):
+    tags = TagField(to=MediaTagModel)

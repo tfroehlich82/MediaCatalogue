@@ -124,8 +124,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-# MEDIA_ROOT = "D:\\DjangoMedia\\"
-MEDIA_ROOT = "/var/local/DjangoMedia/"
+MEDIA_ROOT = "D:\\DjangoMedia\\"
+# MEDIA_ROOT = "/var/local/DjangoMedia/"
 MEDIA_URL = "/media/"
 
 SERIALIZATION_MODULES = {

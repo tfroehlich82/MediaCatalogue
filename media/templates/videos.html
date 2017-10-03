@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load staticfiles ratings %}
+
+{% block meta_title %}Videos{% endblock %}
+{% block title %}Videos{% endblock %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+{% endblock %}
+
+{% block main %}
+
+    <div class="pmd-card pmd-z-depth">
+	<div class="table-responsive">
+    <table class="pmd-table table table-bordered table-striped">
+        <thead>
+            <tr>
+                <td>
+                    <div class="checkbox pmd-default-theme">
+                        <label class="pmd-checkbox pmd-checkbox-ripple-effect">
+                            <input type="checkbox" value="" >
+                        </label>
+                    </div>
+                </td>
+                <td>Filename</td>
+                <td>Type</td>
+                <td>Path</td>
+                <td>Rating</td>
+                <td>Tags</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for video in media.videos %}
+            <tr>
+                <td>
+                    <div class="checkbox pmd-default-theme">
+                        <label class="pmd-checkbox pmd-checkbox-ripple-effect">
+                            <input type="checkbox" value="" >
+                        </label>
+                    </div>
+                </td>
+                <td><a href="/media/{{ video }}">{{ video.shortname }}</a></td>
+                <td>{{ video.filetype }}</td>
+                <td>{{ video.path }}</td>
+                <td>{% ratings video %}</td>
+                <td>{{ video.tags }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    </div>
+
+{% endblock %}

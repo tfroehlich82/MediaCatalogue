@@ -6,4 +6,6 @@ class MainNavBar(NavBar):
     # brandurl = reverse('index')
     items = [
         NavBarLinkItem("Home", "index"),
+        NavBarLinkItem("Images", "images"),
+        NavBarLinkItem("Videos", "videos"),
     ]
