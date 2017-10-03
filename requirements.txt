@@ -1,4 +1,3 @@
 Django
 django-propeller
 django-tagulous
-django-star-ratings

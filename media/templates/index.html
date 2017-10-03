@@ -11,10 +11,22 @@
 
 {% block main %}
 
-    <h3>Images:</h3>
-    <table>
+    <div class="pmd-card pmd-z-depth">
+    <div class="pmd-card-title">
+        <h2 class="pmd-card-title-text">Images:</h2>
+    </div>
+	<div class="table-responsive">
+    <table class="pmd-table table table-bordered table-striped">
         <thead>
             <tr>
+                <td>
+                    <div class="checkbox pmd-default-theme">
+                        <label class="pmd-checkbox pmd-checkbox-ripple-effect">
+                            <input type="checkbox" value="" >
+                        </label>
+                    </div>
+                </td>
+                <td>Preview</td>
                 <td>Filename</td>
                 <td>Type</td>
                 <td>Path</td>
@@ -25,8 +37,14 @@
         <tbody>
         {% for image in media.images %}
             <tr>
-    {#            <img src='/media/{{ image|safe }}' width="100px" />#}
-{#                <a href="/media/{{ image }}">{{ image }}</a>#}
+                <td>
+                    <div class="checkbox pmd-default-theme">
+                        <label class="pmd-checkbox pmd-checkbox-ripple-effect">
+                            <input type="checkbox" value="" >
+                        </label>
+                    </div>
+                </td>
+                <td><img src='/media/{{ image }}' alt="" width="50px" /></td>
                 <td><a href="/media/{{ image }}">{{ image.shortname }}</a></td>
                 <td>{{ image.filetype }}</td>
                 <td>{{ image.path }}</td>
@@ -36,6 +54,8 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
+    </div>
 
     <h3>Videos:</h3>
     <ul>
