@@ -1,16 +1,10 @@
 from django.contrib import admin
+from watson.admin import SearchAdmin
 from .models import Image
 
 
-class ImageAdmin(admin.ModelAdmin):
-    pass
-#     list_display = ['tag_list']
-#
-#     def get_queryset(self, request):
-#         return super(ImageAdmin, self).get_queryset(request).prefetch_related('tags')
-#
-#     def tag_list(self, obj):
-#         return u", ".join(o.name for o in obj.tags.all())
-#
-#
+class ImageAdmin(SearchAdmin):
+    search_fields = ("full_path", )
+
+
 admin.site.register(Image, ImageAdmin)

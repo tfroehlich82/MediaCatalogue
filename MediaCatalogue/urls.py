@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^$', IndexPage.as_view(), name='index'),
     url(r'^images/$', ImagePage.as_view(), name='images'),
     url(r'^videos/$', VideoPage.as_view(), name='videos'),
+    url(r"^search/", include("watson.urls", namespace="watson")),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
     url(r'^admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
