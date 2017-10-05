@@ -18,13 +18,14 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
-from media.views import IndexPage, ImagePage, VideoPage, AudioPage
+from media.views import IndexPage, ImagePage, VideoPage, AudioPage, SettingsPage
 
 urlpatterns = [
     url(r'^$', IndexPage.as_view(), name='index'),
     url(r'^images/$', ImagePage.as_view(), name='images'),
     url(r'^videos/$', VideoPage.as_view(), name='videos'),
     url(r'^audio/$', AudioPage.as_view(), name='audio'),
+    url(r'^settings/$', SettingsPage.as_view(), name='settings'),
     url(r"^search/", include("watson.urls", namespace="watson")),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
     url(r'^admin/', admin.site.urls),

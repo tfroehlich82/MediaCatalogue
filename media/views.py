@@ -67,3 +67,7 @@ class VideoPage(MainNavView):
 
 class AudioPage(MainNavView):
     template_name = 'audio.html'
+
+
+class SettingsPage(MainNavView):
+    template_name = 'settings.html'

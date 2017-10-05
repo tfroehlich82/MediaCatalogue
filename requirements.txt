@@ -2,3 +2,4 @@ Django
 django-propeller
 django-tagulous
 django-watson
+djangoajax

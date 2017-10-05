@@ -29,5 +29,6 @@ class MainNavBar(NavBar):
         NavBarLinkItem("Images", "images"),
         NavBarLinkItem("Videos", "videos"),
         NavBarLinkItem("Audio", "audio"),
+        NavBarLinkItem("Settings", "settings"),
         CustomItem(search_box),
     ]
