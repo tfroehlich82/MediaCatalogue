@@ -48,3 +48,4 @@ fabric.properties
 
 /db.sqlite3
 /static/
+!/star_ratings/static/
