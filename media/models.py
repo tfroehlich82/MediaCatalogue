@@ -40,3 +40,7 @@ class Image(MediaFile):
 
 class Video(MediaFile):
     tags = TagField(to=MediaTagModel)
+
+
+class Audio(MediaFile):
+    tags = TagField(to=MediaTagModel)

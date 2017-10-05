@@ -5,8 +5,8 @@ from django_propeller.views import NavBarMixin
 import os
 
 from .navbars import MainNavBar
-from .media_settings import PATH, IMAGE_EXT, VIDEO_EXT
-from .models import Image, Video
+from .media_settings import PATH, IMAGE_EXT, VIDEO_EXT, AUDIO_EXT
+from .models import Image, Video, Audio
 
 
 def get_media():
@@ -29,9 +29,18 @@ def get_media():
                 vid = Video()
                 vid.full_path = full_path
                 vid.save()
+        elif ext[-1].lower() in AUDIO_EXT:
+            full_path = os.path.join(PATH, itm)
+            try:
+                Audio.objects.get(full_path=full_path)
+            except ObjectDoesNotExist:
+                aud = Audio()
+                aud.full_path = full_path
+                aud.save()
     images = Image.objects.all()
     videos = Video.objects.all()
-    return {'images': images, 'videos': videos}
+    audio = Audio.objects.all()
+    return {'images': images, 'videos': videos, 'audio': audio}
 
 
 class MainNavView(TemplateView, NavBarMixin):
@@ -54,3 +63,7 @@ class ImagePage(MainNavView):
 
 class VideoPage(MainNavView):
     template_name = 'videos.html'
+
+
+class AudioPage(MainNavView):
+    template_name = 'audio.html'
