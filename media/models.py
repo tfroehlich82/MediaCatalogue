@@ -1,6 +1,9 @@
 from django.db import models
 from tagulous.models import TagField, TagModel
+
 import os
+import time
+from PIL import Image as pImg
 
 
 class MediaTagModel(TagModel):
@@ -27,6 +30,18 @@ class MediaFile(models.Model):
     def filetype(self):
         return os.path.splitext(self.full_path)[-1]
 
+    @property
+    def filesize(self):
+        return os.path.getsize(self.full_path)
+
+    @property
+    def last_modified_dt(self):
+        return time.ctime(os.path.getmtime(self.full_path))
+
+    @property
+    def creation_dt(self):
+        return time.ctime(os.path.getctime(self.full_path))
+
     def __unicode__(self):
         return os.path.split(self.full_path)[-1]
 
@@ -36,6 +51,11 @@ class MediaFile(models.Model):
 
 class Image(MediaFile):
     tags = TagField(to=MediaTagModel)
+
+    @property
+    def image_size(self):
+        im = pImg.open(self.full_path)
+        return im.size
 
 
 class Video(MediaFile):

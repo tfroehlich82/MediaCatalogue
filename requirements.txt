@@ -3,3 +3,4 @@ django-propeller
 django-tagulous
 django-watson
 djangoajax
+Pillow
