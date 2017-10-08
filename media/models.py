@@ -11,19 +11,30 @@ class MediaTagModel(TagModel):
         pass
 
 
-CATEGORIES = [
-    ('None', ""),
-    ('Test', 'test'),
-]
+class Category(models.Model):
+    name = models.CharField(max_length=256)
+
+    @property
+    def as_choice(self):
+        return self.name, self.name.lower()
+
+    def __unicode__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name
 
 
 class MediaFile(models.Model):
     full_path = models.TextField(blank=False)
     is_deleted = models.BooleanField(default=False)
-    category = models.TextField(blank=True, choices=CATEGORIES)
 
     class Meta:
         abstract = True
+
+    @property
+    def exists(self):
+        return os.path.exists(self.full_path)
 
     @property
     def shortname(self):
@@ -60,6 +71,7 @@ class MediaFile(models.Model):
 
 class Image(MediaFile):
     tags = TagField(to=MediaTagModel)
+    category = models.ForeignKey(Category, blank=True, null=True)
 
     @property
     def image_size(self):
@@ -69,7 +81,9 @@ class Image(MediaFile):
 
 class Video(MediaFile):
     tags = TagField(to=MediaTagModel)
+    category = models.ForeignKey(Category, blank=True, null=True)
 
 
 class Audio(MediaFile):
     tags = TagField(to=MediaTagModel)
+    category = models.ForeignKey(Category, blank=True, null=True)

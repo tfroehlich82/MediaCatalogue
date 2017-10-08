@@ -37,6 +37,15 @@ def get_media():
                 aud = Audio()
                 aud.full_path = full_path
                 aud.save()
+    for img in Image.objects.all():
+        if not img.exists:
+            img.delete()
+    for vid in Video.objects.all():
+        if not vid.exists:
+            vid.delete()
+    for aud in Audio.objects.all():
+        if not aud.exists:
+            aud.delete()
     images = Image.objects.all()
     videos = Video.objects.all()
     audio = Audio.objects.all()
