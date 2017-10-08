@@ -1,0 +1,12 @@
+.context-navbar {
+    margin-top: -20px;
+    background-color: #ededed;
+}
+
+.context-navbar .navbar-brand {
+    font-size: 16px;
+}
+
+body {
+    background-color: white;
+}

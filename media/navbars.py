@@ -1,4 +1,7 @@
 from django_propeller.navbar import NavBar, NavBarLinkItem, NavBarDropDownItem, NavBarDropDownDivider
+from django_propeller.utils import render_tag, add_css_class
+from django_propeller.text import text_concat
+from django.utils.safestring import mark_safe
 
 
 class CustomItem(object):
@@ -21,6 +24,29 @@ search_box = """
 """
 
 
+class ContextNavBar(NavBar):
+    style_context = True
+
+    def as_html(self):
+        """Returns navbar as html"""
+        tag = 'nav'
+        classes = 'navbar'
+        if self.style_inverse:
+            classes = add_css_class(classes, 'navbar-inverse')
+        if self.style_context:
+            classes = add_css_class(classes, 'context-navbar')
+        if self.style_static:
+            classes = add_css_class(classes, 'navbar-static')
+        else:
+            classes = add_css_class(classes, 'navbar-top')
+        classes = add_css_class(classes, 'pmd-navbar')
+        classes = add_css_class(classes, 'pmd-z-depth')
+        attrs = {'class': classes}
+        content = self.render_content()
+        content = text_concat(content, '<div class="pmd-sidebar-overlay"></div>')
+        return render_tag(tag, attrs=attrs, content=mark_safe(content), )
+
+
 class MainNavBar(NavBar):
     brandname = "MediaCatalogue"
     # brandurl = reverse('index')
@@ -32,3 +58,28 @@ class MainNavBar(NavBar):
         NavBarLinkItem("Settings", "settings"),
         CustomItem(search_box),
     ]
+
+
+class ImageContextNavBar(ContextNavBar):
+    brandname = "Images"
+    style_inverse = False
+    items = [
+        NavBarDropDownItem(name="Organize", items=[
+            NavBarLinkItem("Home", "index"),
+        ]),
+        NavBarDropDownItem(name="Find similar", items=[
+            NavBarLinkItem("Home", "index"),
+        ]),
+    ]
+
+
+class VideoContextBar(ImageContextNavBar):
+    brandname = "Videos"
+
+
+class AudioContextBar(ImageContextNavBar):
+    brandname = "Audio"
+
+
+class EmptyContextBar(ContextNavBar):
+    pass

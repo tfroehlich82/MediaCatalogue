@@ -4,7 +4,7 @@ from django_propeller.views import NavBarMixin
 
 import os
 
-from .navbars import MainNavBar
+from .navbars import MainNavBar, ImageContextNavBar, VideoContextBar, AudioContextBar, EmptyContextBar
 from .media_settings import PATH, IMAGE_EXT, VIDEO_EXT, AUDIO_EXT
 from .models import Image, Video, Audio
 
@@ -46,28 +46,50 @@ def get_media():
 class MainNavView(TemplateView, NavBarMixin):
     navbar_class = MainNavBar
 
-    def get_context_data(self, **kwargs):
-        context = super(MainNavView, self).get_context_data(**kwargs)
-        all_media = get_media()
-        context['media'] = all_media
-        return context
-
 
 class IndexPage(MainNavView):
     template_name = 'index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(MainNavView, self).get_context_data(**kwargs)
+        context['context_bar'] = EmptyContextBar()
+        return context
 
 
 class ImagePage(MainNavView):
     template_name = 'images.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(MainNavView, self).get_context_data(**kwargs)
+        context['media'] = get_media()
+        context['context_bar'] = ImageContextNavBar()
+        return context
+
 
 class VideoPage(MainNavView):
     template_name = 'videos.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(MainNavView, self).get_context_data(**kwargs)
+        context['media'] = get_media()
+        context['context_bar'] = VideoContextBar()
+        return context
 
 
 class AudioPage(MainNavView):
     template_name = 'audio.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(MainNavView, self).get_context_data(**kwargs)
+        context['media'] = get_media()
+        context['context_bar'] = AudioContextBar()
+        return context
+
 
 class SettingsPage(MainNavView):
     template_name = 'settings.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(MainNavView, self).get_context_data(**kwargs)
+        context['context_bar'] = EmptyContextBar()
+        return context
