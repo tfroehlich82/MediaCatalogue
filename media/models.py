@@ -11,9 +11,16 @@ class MediaTagModel(TagModel):
         pass
 
 
+CATEGORIES = [
+    ('None', ""),
+    ('Test', 'test'),
+]
+
+
 class MediaFile(models.Model):
     full_path = models.TextField(blank=False)
     is_deleted = models.BooleanField(default=False)
+    category = models.TextField(blank=True, choices=CATEGORIES)
 
     class Meta:
         abstract = True
@@ -32,15 +39,17 @@ class MediaFile(models.Model):
 
     @property
     def filesize(self):
-        return os.path.getsize(self.full_path)
+        return str(os.path.getsize(self.full_path)) + " KB"
 
     @property
     def last_modified_dt(self):
-        return time.ctime(os.path.getmtime(self.full_path))
+        # return time.ctime(os.path.getmtime(self.full_path))
+        return time.ctime(os.path.getctime(self.full_path))
 
     @property
     def creation_dt(self):
-        return time.ctime(os.path.getctime(self.full_path))
+        # return time.ctime(os.path.getctime(self.full_path))
+        return time.ctime(os.path.getmtime(self.full_path))
 
     def __unicode__(self):
         return os.path.split(self.full_path)[-1]

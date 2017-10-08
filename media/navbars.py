@@ -67,9 +67,8 @@ class ImageContextNavBar(ContextNavBar):
         NavBarDropDownItem(name="Organize", items=[
             NavBarLinkItem("Home", "index"),
         ]),
-        NavBarDropDownItem(name="Find similar", items=[
-            NavBarLinkItem("Home", "index"),
-        ]),
+        NavBarLinkItem("Find similar", "index"),
+        NavBarLinkItem("Edit", "index"),
     ]
 
 

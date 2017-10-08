@@ -32,6 +32,7 @@
                 <td>last modified</td>
                 <td>created</td>
                 <td>Rating</td>
+                <td>Categories</td>
                 <td>Tags</td>
             </tr>
         </thead>
@@ -54,6 +55,7 @@
                 <td>{{ image.last_modified_dt }}</td>
                 <td>{{ image.creation_dt }}</td>
                 <td>{% ratings image %}</td>
+                <td>{{ image.category }}</td>
                 <td>{{ image.tags }}</td>
             </tr>
         {% endfor %}
