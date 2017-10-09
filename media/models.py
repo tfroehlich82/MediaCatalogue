@@ -87,7 +87,15 @@ class Video(MediaFile):
     tags = TagField(to=MediaTagModel)
     category = models.ManyToManyField(Category)
 
+    @property
+    def categories(self):
+        return ",".join([x.name for x in self.category.all()])
+
 
 class Audio(MediaFile):
     tags = TagField(to=MediaTagModel)
     category = models.ManyToManyField(Category)
+
+    @property
+    def categories(self):
+        return ",".join([x.name for x in self.category.all()])

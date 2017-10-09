@@ -16,13 +16,6 @@
     <table class="pmd-table table table-bordered table-striped">
         <thead>
             <tr>
-                <td>
-                    <div class="checkbox pmd-default-theme">
-                        <label class="pmd-checkbox pmd-checkbox-ripple-effect">
-                            <input type="checkbox" value="" >
-                        </label>
-                    </div>
-                </td>
                 <td>Preview</td>
                 <td>Filename</td>
                 <td>Type</td>
@@ -39,13 +32,6 @@
         <tbody>
         {% for image in media.images %}
             <tr>
-                <td>
-                    <div class="checkbox pmd-default-theme">
-                        <label class="pmd-checkbox pmd-checkbox-ripple-effect">
-                            <input type="checkbox" value="" >
-                        </label>
-                    </div>
-                </td>
                 <td><img src='/media/{{ image }}' alt="" width="50px" /></td>
                 <td><a href="/media/{{ image }}">{{ image.shortname }}</a></td>
                 <td>{{ image.filetype }}</td>
