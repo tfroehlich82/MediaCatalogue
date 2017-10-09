@@ -2,6 +2,10 @@
 
 {% load propeller staticfiles %}
 
+{% block propeller_title %}
+    MediaCatalogue
+{% endblock %}
+
 {% block propeller_extra_head %}
     <link href="{% static 'css/propeller-extra.css' %}" rel="stylesheet">
     {% block extra_head %}
