@@ -12,7 +12,7 @@ class MediaTagModel(TagModel):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=256)
+    name = models.CharField(max_length=50)
 
     @property
     def as_choice(self):
@@ -71,7 +71,11 @@ class MediaFile(models.Model):
 
 class Image(MediaFile):
     tags = TagField(to=MediaTagModel)
-    category = models.ForeignKey(Category, blank=True, null=True)
+    category = models.ManyToManyField(Category)
+
+    @property
+    def categories(self):
+        return ",".join([x.name for x in self.category.all()])
 
     @property
     def image_size(self):
@@ -81,9 +85,9 @@ class Image(MediaFile):
 
 class Video(MediaFile):
     tags = TagField(to=MediaTagModel)
-    category = models.ForeignKey(Category, blank=True, null=True)
+    category = models.ManyToManyField(Category)
 
 
 class Audio(MediaFile):
     tags = TagField(to=MediaTagModel)
-    category = models.ForeignKey(Category, blank=True, null=True)
+    category = models.ManyToManyField(Category)
