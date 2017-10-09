@@ -7,7 +7,7 @@ from django.utils.safestring import mark_safe
 class CustomItem(object):
     html = ""
 
-    def __init__(self, html):
+    def __init__(self, html=""):
         self.html = html
 
     def as_html(self):
@@ -46,6 +46,14 @@ class ContextNavBar(NavBar):
         content = text_concat(content, '<div class="pmd-sidebar-overlay"></div>')
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
+    def render_header(self):
+        """Returns navbar header as html"""
+        tag = 'div'
+        attrs = {'class': 'navbar-header'}
+        content = self.render_toggle()
+        content = text_concat(content, self.brandname)
+        return render_tag(tag, attrs=attrs, content=mark_safe(content), )
+
 
 class MainNavBar(NavBar):
     brandname = "MediaCatalogue"
@@ -61,7 +69,8 @@ class MainNavBar(NavBar):
 
 
 class ImageContextNavBar(ContextNavBar):
-    brandname = "Images"
+    brandname = "<div class='navbar-brand'><i class='material-icons' style='margin-top: 10px;'>insert_photo</i></div>" \
+                "<div class='navbar-brand'>&nbsp;<span>Images</span></div>"
     style_inverse = False
     items = [
         NavBarDropDownItem(name="Organize", items=[
@@ -73,11 +82,13 @@ class ImageContextNavBar(ContextNavBar):
 
 
 class VideoContextBar(ImageContextNavBar):
-    brandname = "Videos"
+    brandname = "<div class='navbar-brand'><i class='material-icons' style='margin-top: 10px;'>movie</i></div>" \
+                "<div class='navbar-brand'>&nbsp;<span>Videos</span></div>"
 
 
 class AudioContextBar(ImageContextNavBar):
-    brandname = "Audio"
+    brandname = "<div class='navbar-brand'><i class='material-icons' style='margin-top: 10px;'>music_video</i></div>" \
+                "<div class='navbar-brand'>&nbsp;<span>Audio</span></div>"
 
 
 class EmptyContextBar(ContextNavBar):
