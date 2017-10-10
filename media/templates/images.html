@@ -18,6 +18,7 @@
             <tr>
                 <td>Preview</td>
                 <td>Filename</td>
+                <td>Description</td>
                 <td>Type</td>
                 <td>Size</td>
                 <td>Path</td>
@@ -34,6 +35,7 @@
             <tr>
                 <td><img src='/media/{{ image }}' alt="" width="50px" /></td>
                 <td><a href="/media/{{ image }}">{{ image.shortname }}</a></td>
+                <td>{{ image.description|default_if_none:"" }}</td>
                 <td>{{ image.filetype }}</td>
                 <td>{{ image.image_size.0 }}x{{ image.image_size.1 }}</td>
                 <td>{{ image.path }}</td>
