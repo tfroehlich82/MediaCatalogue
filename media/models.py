@@ -28,6 +28,7 @@ class Category(models.Model):
 class MediaFile(models.Model):
     full_path = models.TextField(blank=False)
     is_deleted = models.BooleanField(default=False)
+    description = models.TextField(blank=True, null=True)
 
     class Meta:
         abstract = True
