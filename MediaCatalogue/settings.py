@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'tagulous',
     'star_ratings',
     'watson',
-    'relations',
 ]
 
 MIDDLEWARE = [
