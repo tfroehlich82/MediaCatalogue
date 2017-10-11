@@ -27,7 +27,9 @@
                 <td>Type</td>
                 <td>Path</td>
                 <td>Rating</td>
+                <td>Categories</td>
                 <td>Tags</td>
+                <td>Relations</td>
             </tr>
         </thead>
         <tbody>
@@ -40,11 +42,13 @@
                         </label>
                     </div>
                 </td>
-                <td><a href="/media/{{ audio }}">{{ audio.shortname }}</a></td>
+                <td>{{ audio.get_link|safe }}</td>
                 <td>{{ audio.filetype }}</td>
                 <td>{{ audio.path }}</td>
                 <td>{% ratings audio %}</td>
+                <td>{{ audio.categories }}</td>
                 <td>{{ audio.tags }}</td>
+                <td>{{ audio.get_relations|safe }}</td>
             </tr>
         {% endfor %}
         </tbody>

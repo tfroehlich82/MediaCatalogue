@@ -27,7 +27,9 @@
                 <td>Type</td>
                 <td>Path</td>
                 <td>Rating</td>
+                <td>Categories</td>
                 <td>Tags</td>
+                <td>Relations</td>
             </tr>
         </thead>
         <tbody>
@@ -40,11 +42,13 @@
                         </label>
                     </div>
                 </td>
-                <td><a href="/media/{{ video }}">{{ video.shortname }}</a></td>
+                <td>{{ video.get_link|safe }}</td>
                 <td>{{ video.filetype }}</td>
                 <td>{{ video.path }}</td>
                 <td>{% ratings video %}</td>
+                <td>{{ video.categories }}</td>
                 <td>{{ video.tags }}</td>
+                <td>{{ video.get_relations|safe }}</td>
             </tr>
         {% endfor %}
         </tbody>

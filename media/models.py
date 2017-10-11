@@ -23,9 +23,9 @@ class RelationType(models.Model):
 
 class GenericObjectRelation(models.Model):
     relation_type = models.ForeignKey(RelationType)
-    related_image = models.ManyToManyField('Image', null=True, blank=True)
-    related_video = models.ManyToManyField('Video', null=True, blank=True)
-    related_audio = models.ManyToManyField('Audio', null=True, blank=True)
+    related_image = models.ManyToManyField('Image', blank=True)
+    related_video = models.ManyToManyField('Video', blank=True)
+    related_audio = models.ManyToManyField('Audio', blank=True)
 
     @property
     def related_images(self):
@@ -55,7 +55,7 @@ class GenericObjectRelation(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=60)
 
     @property
     def as_choice(self):
@@ -118,9 +118,9 @@ class MediaFile(models.Model):
 
 
 class Image(MediaFile):
-    tags = TagField(to=MediaTagModel)
-    category = models.ManyToManyField(Category)
-    relation = models.ManyToManyField(GenericObjectRelation)
+    tags = TagField(to=MediaTagModel, blank=True)
+    category = models.ManyToManyField(Category, blank=True)
+    relation = models.ManyToManyField(GenericObjectRelation, blank=True)
 
     @property
     def categories(self):
@@ -136,18 +136,26 @@ class Image(MediaFile):
 
 
 class Video(MediaFile):
-    tags = TagField(to=MediaTagModel)
-    category = models.ManyToManyField(Category)
+    tags = TagField(to=MediaTagModel, blank=True)
+    category = models.ManyToManyField(Category, blank=True)
+    relation = models.ManyToManyField(GenericObjectRelation, blank=True)
 
     @property
     def categories(self):
         return ",".join([x.name for x in self.category.all()])
+
+    def get_relations(self):
+        return "\n".join([str(x) for x in self.relation.all()])
 
 
 class Audio(MediaFile):
-    tags = TagField(to=MediaTagModel)
-    category = models.ManyToManyField(Category)
+    tags = TagField(to=MediaTagModel, blank=True)
+    category = models.ManyToManyField(Category, blank=True)
+    relation = models.ManyToManyField(GenericObjectRelation, blank=True)
 
     @property
     def categories(self):
         return ",".join([x.name for x in self.category.all()])
+
+    def get_relations(self):
+        return "\n".join([str(x) for x in self.relation.all()])

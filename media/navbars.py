@@ -80,14 +80,30 @@ class ImageContextNavBar(ContextNavBar):
     ]
 
 
-class VideoContextBar(ImageContextNavBar):
+class VideoContextBar(ContextNavBar):
     brandname = "<div class='navbar-brand'><i class='material-icons' style='margin-top: 10px;'>movie</i></div>" \
                 "<div class='navbar-brand'>&nbsp;<span>Videos</span></div>"
+    style_inverse = False
+    items = [
+        NavBarDropDownItem(name="Organize", items=[
+            NavBarLinkItem("Home", "index"),
+        ]),
+        NavBarLinkItem("Find similar", "index"),
+        NavBarLinkItem("Edit", "index"),
+    ]
 
 
-class AudioContextBar(ImageContextNavBar):
+class AudioContextBar(ContextNavBar):
     brandname = "<div class='navbar-brand'><i class='material-icons' style='margin-top: 10px;'>music_video</i></div>" \
                 "<div class='navbar-brand'>&nbsp;<span>Audio</span></div>"
+    style_inverse = False
+    items = [
+        NavBarDropDownItem(name="Organize", items=[
+            NavBarLinkItem("Home", "index"),
+        ]),
+        NavBarLinkItem("Find similar", "index"),
+        NavBarLinkItem("Edit", "index"),
+    ]
 
 
 class EmptyContextBar(ContextNavBar):
