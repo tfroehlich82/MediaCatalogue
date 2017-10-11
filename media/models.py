@@ -11,6 +11,49 @@ class MediaTagModel(TagModel):
         pass
 
 
+class RelationType(models.Model):
+    text = models.CharField(max_length=60, blank=False)
+
+    def __unicode__(self):
+        return self.text
+
+    def __str__(self):
+        return self.text
+
+
+class GenericObjectRelation(models.Model):
+    relation_type = models.ForeignKey(RelationType)
+    related_image = models.ManyToManyField('Image', null=True, blank=True)
+    related_video = models.ManyToManyField('Video', null=True, blank=True)
+    related_audio = models.ManyToManyField('Audio', null=True, blank=True)
+
+    @property
+    def related_images(self):
+        if self.related_image.count() > 0:
+            return "Images:" + ", ".join([x.get_link for x in self.related_image.all()])
+        return ""
+
+    @property
+    def related_videos(self):
+        if self.related_video.count() > 0:
+            return "Videos:" + ", ".join([x.get_link for x in self.related_video.all()])
+        return ""
+
+    @property
+    def related_audios(self):
+        if self.related_audio.count() > 0:
+            return "Audio:" + ", ".join([x.get_link for x in self.related_audio.all()])
+        return ""
+
+    def __unicode__(self):
+        return self.relation_type.text + ": [" + self.related_images + "\n"\
+               + self.related_videos + "\n" + self.related_audios + "]"
+
+    def __str__(self):
+        return self.relation_type.text + ": [" + self.related_images + "\n" \
+               + self.related_videos + "\n" + self.related_audios + "]"
+
+
 class Category(models.Model):
     name = models.CharField(max_length=50)
 
@@ -63,16 +106,21 @@ class MediaFile(models.Model):
         # return time.ctime(os.path.getctime(self.full_path))
         return time.ctime(os.path.getmtime(self.full_path))
 
+    @property
+    def get_link(self):
+        return "<a href='/media/%s'>%s</a>" % (os.path.split(self.full_path)[-1], self.shortname)
+
     def __unicode__(self):
         return os.path.split(self.full_path)[-1]
 
     def __str__(self):
-        return self.__unicode__()
+        return os.path.split(self.full_path)[-1]
 
 
 class Image(MediaFile):
     tags = TagField(to=MediaTagModel)
     category = models.ManyToManyField(Category)
+    relation = models.ManyToManyField(GenericObjectRelation)
 
     @property
     def categories(self):
@@ -82,6 +130,9 @@ class Image(MediaFile):
     def image_size(self):
         im = pImg.open(self.full_path)
         return im.size
+
+    def get_relations(self):
+        return "\n".join([str(x) for x in self.relation.all()])
 
 
 class Video(MediaFile):
