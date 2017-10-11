@@ -1,15 +1,16 @@
 {% extends "base.html" %}
-{% load staticfiles ratings %}
+{% load propeller staticfiles ratings %}
 
 {% block meta_title %}Settings{% endblock %}
 {% block title %}Settings{% endblock %}
 
 {% block main %}
     <div class="pmd-card pmd-z-depth">
-        <div class="checkbox pmd-default-theme">
-            <label class="pmd-checkbox pmd-checkbox-ripple-effect">
-                <input type="checkbox" value="" >
-            </label>
-        </div>
+         <form action="" method="post">
+            <h3>Images Table</h3>
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% propeller_button "Save" button_type="submit" button_class="btn-primary" %}
+        </form>
     </div>
 {% endblock %}

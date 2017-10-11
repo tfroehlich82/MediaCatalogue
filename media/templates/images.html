@@ -23,19 +23,41 @@
                         </label>
                     </div>
                 </td>
+                {% if table_settings.show_preview %}
                 <td>Preview</td>
+                {% endif %}
                 <td>Filename</td>
+                {% if table_settings.show_description %}
                 <td>Description</td>
+                {% endif %}
+                {% if table_settings.show_type %}
                 <td>Type</td>
+                {% endif %}
+                {% if table_settings.show_size %}
                 <td>Size</td>
+                {% endif %}
+                {% if table_settings.show_path %}
                 <td>Path</td>
+                {% endif %}
+                {% if table_settings.show_filesize %}
                 <td>Filesize</td>
+                {% endif %}
+                {% if table_settings.show_modified %}
                 <td>last modified</td>
+                {% endif %}
+                {% if table_settings.show_created %}
                 <td>created</td>
+                {% endif %}
+                {% if table_settings.show_rating %}
                 <td>Rating</td>
+                {% endif %}
                 <td>Categories</td>
+                {% if table_settings.show_tags %}
                 <td>Tags</td>
+                {% endif %}
+                {% if table_settings.show_relations %}
                 <td>Relations</td>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -48,19 +70,41 @@
                         </label>
                     </div>
                 </td>
+                {% if table_settings.show_preview %}
                 <td><img src='/media/{{ image }}' alt="" width="50px" /></td>
+                {% endif %}
                 <td>{{ image.get_link|safe }}</td>
+                {% if table_settings.show_description %}
                 <td>{{ image.description|default_if_none:"" }}</td>
+                {% endif %}
+                {% if table_settings.show_type %}
                 <td>{{ image.filetype }}</td>
+                {% endif %}
+                {% if table_settings.show_size %}
                 <td>{{ image.image_size.0 }}x{{ image.image_size.1 }}</td>
+                {% endif %}
+                {% if table_settings.show_path %}
                 <td>{{ image.path }}</td>
+                {% endif %}
+                {% if table_settings.show_filesize %}
                 <td>{{ image.filesize }}</td>
+                {% endif %}
+                {% if table_settings.show_modified %}
                 <td>{{ image.last_modified_dt }}</td>
+                {% endif %}
+                {% if table_settings.show_created %}
                 <td>{{ image.creation_dt }}</td>
+                {% endif %}
+                {% if table_settings.show_rating %}
                 <td>{% ratings image %}</td>
+                {% endif %}
                 <td>{{ image.categories }}</td>
+                {% if table_settings.show_tags %}
                 <td>{{ image.tags }}</td>
+                {% endif %}
+                {% if table_settings.show_relations %}
                 <td>{{ image.get_relations|safe }}</td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>

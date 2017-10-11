@@ -1,6 +1,6 @@
 from django.contrib import admin
 from watson.admin import SearchAdmin
-from .models import Image, Video, Audio, Category, GenericObjectRelation, RelationType
+from .models import Image, Video, Audio, Category, GenericObjectRelation, RelationType, ImageTableSettings
 
 
 class ImageAdmin(SearchAdmin):
@@ -27,10 +27,14 @@ class RelationTypeAdmin(admin.ModelAdmin):
     pass
 
 
+class ImageTableSettingsAdmin(admin.ModelAdmin):
+    pass
+
+
 admin.site.register(Image, ImageAdmin)
 admin.site.register(Video, VideoAdmin)
 admin.site.register(Audio, AudioAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(RelationType, RelationTypeAdmin)
 admin.site.register(GenericObjectRelation, RelationAdmin)
-
+admin.site.register(ImageTableSettings, ImageTableSettingsAdmin)

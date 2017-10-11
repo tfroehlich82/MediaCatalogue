@@ -1,12 +1,17 @@
 from django.views.generic.base import TemplateView
+from django.views.generic.edit import FormView
 from django.core.exceptions import ObjectDoesNotExist
 from django_propeller.views import NavBarMixin
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
 
 import os
 
-from .navbars import MainNavBar, ImageContextNavBar, VideoContextBar, AudioContextBar, EmptyContextBar
+from .navbars import MainNavBar, ImageContextNavBar, VideoContextBar, AudioContextBar, EmptyContextBar, \
+    ReorganizeContextBar
 from .media_settings import PATH, IMAGE_EXT, VIDEO_EXT, AUDIO_EXT
-from .models import Image, Video, Audio
+from .models import Image, Video, Audio, ImageTableSettings
+from .forms import ImageTableSettingsForm
 
 
 def get_media():
@@ -72,6 +77,7 @@ class ImagePage(MainNavView):
         context = super(MainNavView, self).get_context_data(**kwargs)
         context['media'] = get_media()
         context['context_bar'] = ImageContextNavBar()
+        context['table_settings'] = ImageTableSettings.objects.all()[0]
         return context
 
 
@@ -95,10 +101,34 @@ class AudioPage(MainNavView):
         return context
 
 
-class SettingsPage(MainNavView):
-    template_name = 'settings.html'
+def settings(request):
+    if request.method == 'POST':
+        form = ImageTableSettingsForm(request.POST)
+        if form.is_valid():
+            _settings = ImageTableSettings.objects.get_or_create(id=1)[0]
+            _settings.show_preview = form.cleaned_data['show_preview']
+            _settings.show_description = form.cleaned_data['show_description']
+            _settings.show_type = form.cleaned_data['show_type']
+            _settings.show_size = form.cleaned_data['show_size']
+            _settings.show_path = form.cleaned_data['show_path']
+            _settings.show_filesize = form.cleaned_data['show_filesize']
+            _settings.show_modified = form.cleaned_data['show_modified']
+            _settings.show_created = form.cleaned_data['show_created']
+            _settings.show_rating = form.cleaned_data['show_rating']
+            _settings.show_tags = form.cleaned_data['show_tags']
+            _settings.show_relations = form.cleaned_data['show_relations']
+            _settings.save()
+            return HttpResponseRedirect('/settings/')
+    else:
+        form = ImageTableSettingsForm(instance=ImageTableSettings.objects.get_or_create(id=1)[0])
+
+    return render(request, 'settings.html', {'form': form, 'context_bar': EmptyContextBar(), 'navbar': MainNavBar()})
+
+
+class ReorganizePage(MainNavView):
+    template_name = 'reorganize.html'
 
     def get_context_data(self, **kwargs):
         context = super(MainNavView, self).get_context_data(**kwargs)
-        context['context_bar'] = EmptyContextBar()
+        context['context_bar'] = ReorganizeContextBar(kwargs.get('page-context', ''))
         return context

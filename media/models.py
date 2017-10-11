@@ -159,3 +159,17 @@ class Audio(MediaFile):
 
     def get_relations(self):
         return "\n".join([str(x) for x in self.relation.all()])
+
+
+class ImageTableSettings(models.Model):
+    show_preview = models.BooleanField(default=True)
+    show_description = models.BooleanField(default=True)
+    show_type = models.BooleanField(default=True)
+    show_size = models.BooleanField(default=True)
+    show_path = models.BooleanField(default=True)
+    show_filesize = models.BooleanField(default=True)
+    show_modified = models.BooleanField(default=True)
+    show_created = models.BooleanField(default=True)
+    show_rating = models.BooleanField(default=True)
+    show_tags = models.BooleanField(default=True)
+    show_relations = models.BooleanField(default=True)
