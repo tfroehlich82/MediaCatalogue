@@ -7,10 +7,10 @@
 {% block main %}
     <div class="pmd-card pmd-z-depth">
          <form action="" method="post">
-            <h3>Images Table</h3>
-            {% csrf_token %}
-            {{ form.as_p }}
-            {% propeller_button "Save" button_type="submit" button_class="btn-primary" %}
+             <h3>Images Table</h3>
+             {% csrf_token %}
+             {% propeller_form form %}
+             {% propeller_button "Save" button_type="submit" button_class="btn-primary" %}
         </form>
     </div>
 {% endblock %}
