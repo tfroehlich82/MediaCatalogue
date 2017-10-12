@@ -1,15 +1,17 @@
 from django.views.generic.base import TemplateView
 from django.core.exceptions import ObjectDoesNotExist
-from django_propeller.views import NavBarMixin
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django_propeller.views import NavBarMixin
+from django_ajax.decorators import ajax
+from django.conf import settings as dj_settings
 
 import os
 
 from .navbars import MainNavBar, ImageContextNavBar, VideoContextBar, AudioContextBar, EmptyContextBar, \
     ReorganizeContextBar
 from .media_settings import PATH, IMAGE_EXT, VIDEO_EXT, AUDIO_EXT
-from .models import Image, Video, Audio, ImageTableSettings, VideoTableSettings, AudioTableSettings
+from .models import Image, Video, Audio, ImageTableSettings, VideoTableSettings, AudioTableSettings, Category
 from .forms import ImageTableSettingsForm, VideoTableSettingsForm, AudioTableSettingsForm
 
 
@@ -173,4 +175,30 @@ class ReorganizePage(MainNavView):
     def get_context_data(self, **kwargs):
         context = super(MainNavView, self).get_context_data(**kwargs)
         context['context_bar'] = ReorganizeContextBar(kwargs.get('page-context', ''))
+        context['page_context'] = kwargs.get('page-context', '').lower()
         return context
+
+
+@ajax
+def organize_structure(request):
+    context = request.GET.get('pcon')
+    pattern = request.GET.get('pattern')
+    bpath = dj_settings.MEDIA_ROOT
+    categories = Category.objects.all()
+    if context == 'images':
+        if pattern == 'cat-as-sub':
+            try:
+                for cat in categories:
+                    images = Image.objects.filter(category=cat)
+                    if images.count() > 0:
+                        cat_path = os.path.join(bpath, cat.name)
+                        if not os.path.exists(cat_path):
+                            os.mkdir(cat_path)
+                        for img in images:
+                            old_path = img.full_path
+                            new_path = os.path.join(cat_path, img.shortname + img.filetype)
+                            os.rename(old_path, new_path)
+            except Exception as e:
+                print(e)
+        return HttpResponseRedirect('/images/')
+    return HttpResponseRedirect('/')

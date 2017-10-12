@@ -4,15 +4,35 @@
 {% block meta_title %}MediaCatalogue{% endblock %}
 {% block title %}MediaCatalogue{% endblock %}
 
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/loading.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/loading-btn.css' %}"/>
+    <script type="text/javascript" src="{% static 'django_ajax/js/jquery.ajax.min.js' %}"></script>
+{% endblock %}
+
 {% block main %}
     <script>
-
+    function GetListData(data) {
+        var btn = $('#reorganizeBtn');
+        btn.addClass('running');
+        var pattern = $('#organizePattern').val();
+        ajaxGet('/reorganize/', {
+            pattern: pattern,
+            pcon: '{{ page_context }}'
+        }, function(content){
+            btn.removeClass('running');
+{#            window.location = "/{{ page_context }}/"#}
+        }, {
+            onError: function (err) {}
+        });
+    }
     </script>
     <form class="form-group pmd-textfield">
         {% csrf_token %}
-        <select id="organize-pattern">
-            <option>Category as subfolder</option>
+        <label for="organizePattern">Pattern: </label>
+        <select id="organizePattern">
+            <option value="cat-as-sub">Category as subfolder</option>
         </select>
-        {% propeller_button "Organize" button_type="submit" button_class="btn-primary" %}
+        <div class="btn btn-default ld-ext-right pmd-ripple-effect pmd-btn-outline" id="reorganizeBtn" onclick="GetListData();">Organize<div class="ld ld-ring ld-spin"></div></div>
     </form>
 {% endblock %}

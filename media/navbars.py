@@ -72,9 +72,9 @@ class ImageContextNavBar(ContextNavBar):
                 "<div class='navbar-brand'>&nbsp;<span>Images</span></div>"
     style_inverse = False
     items = [
-        NavBarDropDownItem(name="Organize", items=[
-            NavBarLinkItem("Reorganize Structure", "images-reorganize"),
-        ]),
+        NavBarLinkItem("Organize Structure", "images-organize"),
+        # NavBarDropDownItem(name="Organize", items=[
+        # ]),
         NavBarLinkItem("Find similar", "index"),
         NavBarLinkItem("Edit", "index"),
     ]
@@ -86,7 +86,7 @@ class VideoContextBar(ContextNavBar):
     style_inverse = False
     items = [
         NavBarDropDownItem(name="Organize", items=[
-            NavBarLinkItem("Reorganize Structure", "videos-reorganize"),
+            NavBarLinkItem("Reorganize Structure", "videos-organize"),
         ]),
         NavBarLinkItem("Find similar", "index"),
         NavBarLinkItem("Edit", "index"),
@@ -99,7 +99,7 @@ class AudioContextBar(ContextNavBar):
     style_inverse = False
     items = [
         NavBarDropDownItem(name="Organize", items=[
-            NavBarLinkItem("Reorganize Structure", "audio-reorganize"),
+            NavBarLinkItem("Reorganize Structure", "audio-organize"),
         ]),
         NavBarLinkItem("Find similar", "index"),
         NavBarLinkItem("Edit", "index"),
@@ -118,4 +118,4 @@ class ReorganizeContextBar(ContextNavBar):
     ]
 
     def __init__(self, page_context):
-        self.brandname = "<div class='navbar-brand'>&nbsp;<span>Reorganize %s</span></div>" % page_context
+        self.brandname = "<div class='navbar-brand'>&nbsp;<span>Organize %s</span></div>" % page_context
