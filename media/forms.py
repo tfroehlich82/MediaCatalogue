@@ -4,7 +4,7 @@ from django.forms.utils import flatatt
 from django.utils.html import format_html
 from django.utils.encoding import force_text
 
-from .models import ImageTableSettings
+from .models import ImageTableSettings, VideoTableSettings, AudioTableSettings
 
 
 class PropellerBooleanWidget(CheckboxInput):
@@ -45,4 +45,40 @@ class ImageTableSettingsForm(forms.ModelForm):
 
     class Meta:
         model = ImageTableSettings
+        exclude = []
+
+
+class VideoTableSettingsForm(forms.ModelForm):
+    show_preview = forms.BooleanField(required=False)
+    show_description = forms.BooleanField(required=False)
+    show_type = forms.BooleanField(required=False)
+    show_length = forms.BooleanField(required=False)
+    show_path = forms.BooleanField(required=False)
+    show_filesize = forms.BooleanField(required=False)
+    show_modified = forms.BooleanField(required=False)
+    show_created = forms.BooleanField(required=False)
+    show_rating = forms.BooleanField(required=False)
+    show_tags = forms.BooleanField(required=False)
+    show_relations = forms.BooleanField(required=False)
+
+    class Meta:
+        model = VideoTableSettings
+        exclude = []
+
+
+class AudioTableSettingsForm(forms.ModelForm):
+    show_preview = forms.BooleanField(required=False)
+    show_description = forms.BooleanField(required=False)
+    show_type = forms.BooleanField(required=False)
+    show_length = forms.BooleanField(required=False)
+    show_path = forms.BooleanField(required=False)
+    show_filesize = forms.BooleanField(required=False)
+    show_modified = forms.BooleanField(required=False)
+    show_created = forms.BooleanField(required=False)
+    show_rating = forms.BooleanField(required=False)
+    show_tags = forms.BooleanField(required=False)
+    show_relations = forms.BooleanField(required=False)
+
+    class Meta:
+        model = AudioTableSettings
         exclude = []

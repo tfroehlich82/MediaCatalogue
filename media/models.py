@@ -173,3 +173,31 @@ class ImageTableSettings(models.Model):
     show_rating = models.BooleanField(default=True)
     show_tags = models.BooleanField(default=True)
     show_relations = models.BooleanField(default=True)
+
+
+class VideoTableSettings(models.Model):
+    show_preview = models.BooleanField(default=True)
+    show_description = models.BooleanField(default=True)
+    show_type = models.BooleanField(default=True)
+    show_length = models.BooleanField(default=True)
+    show_path = models.BooleanField(default=True)
+    show_filesize = models.BooleanField(default=True)
+    show_modified = models.BooleanField(default=True)
+    show_created = models.BooleanField(default=True)
+    show_rating = models.BooleanField(default=True)
+    show_tags = models.BooleanField(default=True)
+    show_relations = models.BooleanField(default=True)
+
+
+class AudioTableSettings(models.Model):
+    show_preview = models.BooleanField(default=True)
+    show_description = models.BooleanField(default=True)
+    show_type = models.BooleanField(default=True)
+    show_length = models.BooleanField(default=True)
+    show_path = models.BooleanField(default=True)
+    show_filesize = models.BooleanField(default=True)
+    show_modified = models.BooleanField(default=True)
+    show_created = models.BooleanField(default=True)
+    show_rating = models.BooleanField(default=True)
+    show_tags = models.BooleanField(default=True)
+    show_relations = models.BooleanField(default=True)

@@ -24,12 +24,22 @@
                     </div>
                 </td>
                 <td>Filename</td>
+                {% if table_settings.show_type %}
                 <td>Type</td>
+                {% endif %}
+                {% if table_settings.show_path %}
                 <td>Path</td>
+                {% endif %}
+                {% if table_settings.show_rating %}
                 <td>Rating</td>
+                {% endif %}
                 <td>Categories</td>
+                {% if table_settings.show_tags %}
                 <td>Tags</td>
+                {% endif %}
+                {% if table_settings.show_relations %}
                 <td>Relations</td>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -43,12 +53,22 @@
                     </div>
                 </td>
                 <td>{{ audio.get_link|safe }}</td>
+                {% if table_settings.show_type %}
                 <td>{{ audio.filetype }}</td>
+                {% endif %}
+                {% if table_settings.show_path %}
                 <td>{{ audio.path }}</td>
+                {% endif %}
+                {% if table_settings.show_rating %}
                 <td>{% ratings audio %}</td>
+                {% endif %}
                 <td>{{ audio.categories }}</td>
+                {% if table_settings.show_tags %}
                 <td>{{ audio.tags }}</td>
+                {% endif %}
+                {% if table_settings.show_relations %}
                 <td>{{ audio.get_relations|safe }}</td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>
