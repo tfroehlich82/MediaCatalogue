@@ -198,11 +198,12 @@ def organize_structure(request):
                         if not os.path.exists(cat_path):
                             os.mkdir(cat_path)
                         for img in images:
-                            old_path = img.full_path
-                            new_path = os.path.join(cat_path, img.shortname + img.filetype)
-                            os.rename(old_path, new_path)
-                            img.full_path = new_path
-                            img.save()
+                            if img.full_path != cat_path:
+                                old_path = img.full_path
+                                new_path = os.path.join(cat_path, img.shortname + img.filetype)
+                                os.rename(old_path, new_path)
+                                img.full_path = new_path
+                                img.save()
             except Exception as e:
                 print(e)
         return HttpResponseRedirect('/images/')
