@@ -24,20 +24,20 @@
                     </div>
                 </td>
                 <td>Filename</td>
-                {% if table_settings.show_type %}
+                {% if table_settings.video_show_type %}
                 <td>Type</td>
                 {% endif %}
-                {% if table_settings.show_path %}
+                {% if table_settings.video_show_path %}
                 <td>Path</td>
                 {% endif %}
-                {% if table_settings.show_rating %}
+                {% if table_settings.video_show_rating %}
                 <td>Rating</td>
                 {% endif %}
                 <td>Categories</td>
-                {% if table_settings.show_tags %}
+                {% if table_settings.video_show_tags %}
                 <td>Tags</td>
                 {% endif %}
-                {% if table_settings.show_relations %}
+                {% if table_settings.video_show_relations %}
                 <td>Relations</td>
                 {% endif %}
             </tr>
@@ -53,20 +53,20 @@
                     </div>
                 </td>
                 <td>{{ video.get_link|safe }}</td>
-                {% if table_settings.show_type %}
+                {% if table_settings.video_show_type %}
                 <td>{{ video.filetype }}</td>
                 {% endif %}
-                {% if table_settings.show_path %}
+                {% if table_settings.video_show_path %}
                 <td>{{ video.path }}</td>
                 {% endif %}
-                {% if table_settings.show_rating %}
+                {% if table_settings.video_show_rating %}
                 <td>{% ratings video %}</td>
                 {% endif %}
                 <td>{{ video.categories }}</td>
-                {% if table_settings.show_tags %}
+                {% if table_settings.video_show_tags %}
                 <td>{{ video.tags }}</td>
                 {% endif %}
-                {% if table_settings.show_relations %}
+                {% if table_settings.video_show_relations %}
                 <td>{{ video.get_relations|safe }}</td>
                 {% endif %}
             </tr>

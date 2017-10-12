@@ -114,7 +114,7 @@ class ReorganizeContextBar(ContextNavBar):
     brandname = ""
     style_inverse = False
     items = [
-        NavBarLinkItem("Edit Patterns", "index"),
+        # NavBarLinkItem("Edit Patterns", "index"),
     ]
 
     def __init__(self, page_context):

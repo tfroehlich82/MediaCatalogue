@@ -1,9 +1,18 @@
 {% extends "base.html" %}
-{% load staticfiles ratings %}
+{% load staticfiles propeller %}
 
 {% block meta_title %}MediaCatalogue{% endblock %}
 {% block title %}MediaCatalogue{% endblock %}
 
 {% block main %}
+    <script>
 
+    </script>
+    <form class="form-group pmd-textfield">
+        {% csrf_token %}
+        <select id="organize-pattern">
+            <option>Category as subfolder</option>
+        </select>
+        {% propeller_button "Organize" button_type="submit" button_class="btn-primary" %}
+    </form>
 {% endblock %}

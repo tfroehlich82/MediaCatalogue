@@ -31,17 +31,17 @@ class BooleanField(forms.BooleanField):
 
 
 class ImageTableSettingsForm(forms.ModelForm):
-    show_preview = forms.BooleanField(required=False)
-    show_description = forms.BooleanField(required=False)
-    show_type = forms.BooleanField(required=False)
-    show_size = forms.BooleanField(required=False)
-    show_path = forms.BooleanField(required=False)
-    show_filesize = forms.BooleanField(required=False)
-    show_modified = forms.BooleanField(required=False)
-    show_created = forms.BooleanField(required=False)
-    show_rating = forms.BooleanField(required=False)
-    show_tags = forms.BooleanField(required=False)
-    show_relations = forms.BooleanField(required=False)
+    image_show_preview = forms.BooleanField(required=False)
+    image_show_description = forms.BooleanField(required=False)
+    image_show_type = forms.BooleanField(required=False)
+    image_show_size = forms.BooleanField(required=False)
+    image_show_path = forms.BooleanField(required=False)
+    image_show_filesize = forms.BooleanField(required=False)
+    image_show_modified = forms.BooleanField(required=False)
+    image_show_created = forms.BooleanField(required=False)
+    image_show_rating = forms.BooleanField(required=False)
+    image_show_tags = forms.BooleanField(required=False)
+    image_show_relations = forms.BooleanField(required=False)
 
     class Meta:
         model = ImageTableSettings
@@ -49,17 +49,17 @@ class ImageTableSettingsForm(forms.ModelForm):
 
 
 class VideoTableSettingsForm(forms.ModelForm):
-    show_preview = forms.BooleanField(required=False)
-    show_description = forms.BooleanField(required=False)
-    show_type = forms.BooleanField(required=False)
-    show_length = forms.BooleanField(required=False)
-    show_path = forms.BooleanField(required=False)
-    show_filesize = forms.BooleanField(required=False)
-    show_modified = forms.BooleanField(required=False)
-    show_created = forms.BooleanField(required=False)
-    show_rating = forms.BooleanField(required=False)
-    show_tags = forms.BooleanField(required=False)
-    show_relations = forms.BooleanField(required=False)
+    video_show_preview = forms.BooleanField(required=False)
+    video_show_description = forms.BooleanField(required=False)
+    video_show_type = forms.BooleanField(required=False)
+    video_show_length = forms.BooleanField(required=False)
+    video_show_path = forms.BooleanField(required=False)
+    video_show_filesize = forms.BooleanField(required=False)
+    video_show_modified = forms.BooleanField(required=False)
+    video_show_created = forms.BooleanField(required=False)
+    video_show_rating = forms.BooleanField(required=False)
+    video_show_tags = forms.BooleanField(required=False)
+    video_show_relations = forms.BooleanField(required=False)
 
     class Meta:
         model = VideoTableSettings
@@ -67,17 +67,17 @@ class VideoTableSettingsForm(forms.ModelForm):
 
 
 class AudioTableSettingsForm(forms.ModelForm):
-    show_preview = forms.BooleanField(required=False)
-    show_description = forms.BooleanField(required=False)
-    show_type = forms.BooleanField(required=False)
-    show_length = forms.BooleanField(required=False)
-    show_path = forms.BooleanField(required=False)
-    show_filesize = forms.BooleanField(required=False)
-    show_modified = forms.BooleanField(required=False)
-    show_created = forms.BooleanField(required=False)
-    show_rating = forms.BooleanField(required=False)
-    show_tags = forms.BooleanField(required=False)
-    show_relations = forms.BooleanField(required=False)
+    audio_show_preview = forms.BooleanField(required=False)
+    audio_show_description = forms.BooleanField(required=False)
+    audio_show_type = forms.BooleanField(required=False)
+    audio_show_length = forms.BooleanField(required=False)
+    audio_show_path = forms.BooleanField(required=False)
+    audio_show_filesize = forms.BooleanField(required=False)
+    audio_show_modified = forms.BooleanField(required=False)
+    audio_show_created = forms.BooleanField(required=False)
+    audio_show_rating = forms.BooleanField(required=False)
+    audio_show_tags = forms.BooleanField(required=False)
+    audio_show_relations = forms.BooleanField(required=False)
 
     class Meta:
         model = AudioTableSettings
