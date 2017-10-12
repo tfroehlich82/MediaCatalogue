@@ -5,6 +5,8 @@ import os
 import time
 from PIL import Image as pImg
 
+from .media_settings import PATH
+
 
 class MediaTagModel(TagModel):
     class TagMeta:
@@ -108,7 +110,7 @@ class MediaFile(models.Model):
 
     @property
     def get_link(self):
-        return "<a href='/media/%s'>%s</a>" % (os.path.split(self.full_path)[-1], self.shortname)
+        return "<a href='/media/%s'>%s</a>" % (self.full_path.replace(PATH, ''), self.shortname)
 
     def __unicode__(self):
         return os.path.split(self.full_path)[-1]

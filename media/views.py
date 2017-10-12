@@ -43,6 +43,9 @@ def get_media():
                 aud = Audio()
                 aud.full_path = full_path
                 aud.save()
+        elif os.path.isdir(os.path.join(PATH, itm)):
+            print(os.path.join(PATH, itm))
+            # ToDo: List recursive
     for img in Image.objects.all():
         if not img.exists:
             img.delete()
@@ -198,6 +201,8 @@ def organize_structure(request):
                             old_path = img.full_path
                             new_path = os.path.join(cat_path, img.shortname + img.filetype)
                             os.rename(old_path, new_path)
+                            img.full_path = new_path
+                            img.save()
             except Exception as e:
                 print(e)
         return HttpResponseRedirect('/images/')
