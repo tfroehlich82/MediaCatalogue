@@ -21,7 +21,6 @@
             pcon: '{{ page_context }}'
         }, function(content){
             btn.removeClass('running');
-{#            window.location = "/{{ page_context }}/"#}
         }, {
             onError: function (err) {}
         });
@@ -35,4 +34,5 @@
         </select>
         <div class="btn btn-default ld-ext-right pmd-ripple-effect pmd-btn-outline" id="reorganizeBtn" onclick="GetListData();">Organize<div class="ld ld-ring ld-spin"></div></div>
     </form>
+    {% include 'modal_org_patterns.html' %}
 {% endblock %}

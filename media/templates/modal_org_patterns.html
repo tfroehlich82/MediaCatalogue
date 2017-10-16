@@ -1,0 +1,40 @@
+
+<script>
+    function ModifyPatternData(data) {
+        ajaxGet('/reorganize/patterns', {
+        }, function(content){
+        }, {
+            onError: function (err) {}
+        });
+    }
+</script>
+<div tabindex="-1" class="modal fade" id="form-dialog" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header pmd-modal-bordered">
+				<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+				<h2 class="pmd-card-title-text">Edit Reorganization Patterns</h2>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search for...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-sm btn-primary" type="button"><i class="material-icons">save</i></button>
+                      </span>
+                      <span class="input-group-btn">
+                        <button class="btn btn-sm btn-warning" type="button"><i class="material-icons">create</i></button>
+                      </span>
+                      <span class="input-group-btn">
+                        <button class="btn btn-sm btn-danger" type="button"><i class="material-icons">clear</i></button>
+                      </span>
+                    </div>
+                    <br>
+				</form>
+			</div>
+			<div class="pmd-modal-action">
+				<button data-dismiss="modal" class="btn pmd-ripple-effect btn-primary" type="button">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

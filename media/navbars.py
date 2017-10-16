@@ -110,11 +110,19 @@ class EmptyContextBar(ContextNavBar):
     pass
 
 
+ORG_PATT_BTN = """
+<li>
+<a class="pmd-ripple-effect" data-target="#form-dialog" data-toggle="modal" href="">
+Edit Patterns</a>
+</li>
+"""
+
+
 class ReorganizeContextBar(ContextNavBar):
     brandname = ""
     style_inverse = False
     items = [
-        # NavBarLinkItem("Edit Patterns", "index"),
+        CustomItem(ORG_PATT_BTN)
     ]
 
     def __init__(self, page_context):
